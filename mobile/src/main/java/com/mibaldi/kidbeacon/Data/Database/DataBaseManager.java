@@ -16,7 +16,7 @@ public class DataBaseManager {
         if (results.size() > 0 ) return results.get(0);
         else return null;
     }
-    public static void storeBeaconPosition(final BeaconPosition beaconPosition,final OwnBeacon ownBeacon,final OnDatabaseTransaction listener){
+    public static void storeBeaconPosition(final BeaconPosition beaconPosition, final OwnBeaconRealm ownBeacon, final OnDatabaseTransaction listener){
         Realm realm = Realm.getDefaultInstance();
 
         realm.executeTransactionAsync(new Realm.Transaction() {
@@ -82,14 +82,14 @@ public class DataBaseManager {
         });
     }
 
-    public static OwnGroup getOwnGroup(String name) {
+    public static OwnGroupRealm getOwnGroup(String name) {
 
         Realm realm = Realm.getDefaultInstance();
 
-        RealmQuery<OwnGroup> query = realm.where(OwnGroup.class);
+        RealmQuery<OwnGroupRealm> query = realm.where(OwnGroupRealm.class);
         query.equalTo("name", name);
 
-        RealmResults<OwnGroup> result = query.findAll();
+        RealmResults<OwnGroupRealm> result = query.findAll();
 
         if (result.size() > 0) {
             return result.get(0);
@@ -98,16 +98,16 @@ public class DataBaseManager {
         }
     }
 
-    public static void storeOwnGroup(final OwnGroup ownGroup, final OnDatabaseTransaction listener) {
+    public static void storeOwnGroup(final OwnGroupRealm ownGroupRealm, final OnDatabaseTransaction listener) {
 
         Realm realm = Realm.getDefaultInstance();
 
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm bgRealm) {
-                OwnGroup obj = bgRealm.createObject(OwnGroup.class);
-                obj.setName(ownGroup.getName());
-                obj.setCreation_date(ownGroup.getCreation_date());
+                OwnGroupRealm obj = bgRealm.createObject(OwnGroupRealm.class);
+                obj.setName(ownGroupRealm.getName());
+                obj.setCreation_date(ownGroupRealm.getCreation_date());
             }
         }, new Realm.Transaction.OnSuccess() {
             @Override
@@ -124,18 +124,18 @@ public class DataBaseManager {
 
 
 
-    public static void asignOwnBeacon2OwnGroup(final String groupName, final OwnBeacon ownBeacon, final OnDatabaseTransaction listener) {
+    public static void asignOwnBeacon2OwnGroup(final String groupName, final OwnBeaconRealm ownBeacon, final OnDatabaseTransaction listener) {
         Realm realm = Realm.getDefaultInstance();
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm bgRealm) {
-                OwnGroup ownGroup = DataBaseManager.getOwnGroup(groupName);
-                OwnBeacon obj = bgRealm.createObject(OwnBeacon.class);
+                OwnGroupRealm ownGroupRealm = DataBaseManager.getOwnGroup(groupName);
+                OwnBeaconRealm obj = bgRealm.createObject(OwnBeaconRealm.class);
                 obj.setUuid(ownBeacon.getUuid());
                 obj.setMajor(ownBeacon.getMajor());
                 obj.setMinor(ownBeacon.getMinor());
-                ownGroup.beaconsList.add(obj);
-                bgRealm.copyToRealmOrUpdate(ownGroup);
+                ownGroupRealm.beaconsList.add(obj);
+                bgRealm.copyToRealmOrUpdate(ownGroupRealm);
             }
         }, new Realm.Transaction.OnSuccess() {
             @Override
@@ -153,13 +153,13 @@ public class DataBaseManager {
     }
 
 
-    public static RealmResults<OwnBeacon> getOwnBeacons() {
+    public static RealmResults<OwnBeaconRealm> getOwnBeacons() {
 
         Realm realm = Realm.getDefaultInstance();
 
-        RealmQuery<OwnBeacon> query = realm.where(OwnBeacon.class);
+        RealmQuery<OwnBeaconRealm> query = realm.where(OwnBeaconRealm.class);
 
-        RealmResults<OwnBeacon> result = query.findAll();
+        RealmResults<OwnBeaconRealm> result = query.findAll();
 
         if (result.size() > 0) {
             return result;
@@ -168,16 +168,16 @@ public class DataBaseManager {
         }
     }
 
-    public static OwnBeacon getOwnBeacon(String uuid, String major, String minor) {
+    public static OwnBeaconRealm getOwnBeacon(String uuid, String major, String minor) {
 
         Realm realm = Realm.getDefaultInstance();
 
-        RealmQuery<OwnBeacon> query = realm.where(OwnBeacon.class);
+        RealmQuery<OwnBeaconRealm> query = realm.where(OwnBeaconRealm.class);
         query.equalTo("uuid", uuid);
         query.equalTo("major", major);
         query.equalTo("minor", minor);
 
-        RealmResults<OwnBeacon> result = query.findAll();
+        RealmResults<OwnBeaconRealm> result = query.findAll();
 
         if (result.size() > 0) {
             return result.get(0);
@@ -186,14 +186,14 @@ public class DataBaseManager {
         }
     }
 
-    public static void storeOwnBeacons(final OwnBeacon ownBeacon, final OnDatabaseTransaction listener) {
+    public static void storeOwnBeacons(final OwnBeaconRealm ownBeacon, final OnDatabaseTransaction listener) {
 
         Realm realm = Realm.getDefaultInstance();
 
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm bgRealm) {
-                OwnBeacon obj = bgRealm.createObject(OwnBeacon.class);
+                OwnBeaconRealm obj = bgRealm.createObject(OwnBeaconRealm.class);
                 obj.setUuid(ownBeacon.getUuid());
                 obj.setMajor(ownBeacon.getMajor());
                 obj.setMinor(ownBeacon.getMinor());

@@ -3,7 +3,7 @@ package com.mibaldi.kidbeacon.Data.Database;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class OwnBeacon extends RealmObject {
+public class OwnBeaconRealm extends RealmObject {
     @PrimaryKey
     private String uuid;
     private String major;

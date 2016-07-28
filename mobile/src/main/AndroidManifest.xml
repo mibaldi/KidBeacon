@@ -9,24 +9,28 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".BeaconReferences.MonitoringActivity"
-            android:label="@string/title_activity_monitoring"
-            android:launchMode="singleInstance"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name=".BeaconReferences.RangingActivity" />
-        <activity android:name=".Activities.MainActivity"
-            android:launchMode="singleInstance">
-
-        </activity>
-        <activity android:name=".Auth.SocialAuthActivity">
+        <activity android:name=".Features.Auth.SocialAuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".BeaconReferences.MonitoringActivity"
+            android:label="@string/title_activity_monitoring"
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".BeaconReferences.RangingActivity" />
+        <activity
+            android:name=".Features.Groups.Activities.MainActivity"
+            android:launchMode="singleInstance" />
+        <activity android:name=".Features.Groups.Activities.ListGroupsActivity" />
+        <activity android:name=".Features.Groups.Activities.GroupSingleActivity" />
+        <activity android:name=".Features.Groups.Activities.GroupSettingsActivity" />
+        <activity android:name=".Features.Beacons.Activities.ListBeaconsActivity" />
+        <activity android:name=".Features.Rastreator.Activities.ListBeaconsRastreatorActivity" />
+        <activity android:name=".Features.Beacons.Activities.BeaconSettingsActivity"></activity>
     </application>
 
 </manifest>

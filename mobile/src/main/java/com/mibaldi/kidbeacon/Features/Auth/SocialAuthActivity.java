@@ -1,4 +1,4 @@
-package com.mibaldi.kidbeacon.Auth;
+package com.mibaldi.kidbeacon.Features.Auth;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,20 +13,21 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.crash.FirebaseCrash;
 import com.mibaldi.kidbeacon.BeaconReferences.MonitoringActivity;
+import com.mibaldi.kidbeacon.Features.Groups.Activities.ListGroupsActivity;
+import com.mibaldi.kidbeacon.Features.Groups.Fragments.ListGroupsFragment;
 import com.mibaldi.kidbeacon.R;
 
 import timber.log.Timber;
 
 public class SocialAuthActivity extends AppCompatActivity implements View.OnClickListener {
 
-  private GoogleApiClient client;
+  public static GoogleApiClient client;
   private FirebaseAuth firebaseAuth;
   private FirebaseAuth.AuthStateListener authListener;
 
@@ -34,7 +35,8 @@ public class SocialAuthActivity extends AppCompatActivity implements View.OnClic
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_social_auth);
-
+    FirebaseCrash.report(new Exception("My first Android non-fatal error"));
+    FirebaseCrash.log("SocialAuth Activity created");
     GoogleSignInOptions gso =
         new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
 
@@ -53,6 +55,9 @@ public class SocialAuthActivity extends AppCompatActivity implements View.OnClic
         Timber.d("onAuthStateChanged:signed_out");
       }
     };
+    if (FirebaseAuth.getInstance().getCurrentUser() != null){
+      ListGroupNavigate();
+    }
   }
 
   @Override
@@ -80,11 +85,19 @@ public class SocialAuthActivity extends AppCompatActivity implements View.OnClic
             .show();
       }
       else {
-        Intent intent = new Intent(getApplicationContext(), MonitoringActivity.class);
-        startActivity(intent);
+        ListGroupNavigate();
 
       }
     });
+  }
+
+  private void ListGroupNavigate() {
+    Intent intent = new Intent(SocialAuthActivity.this, ListGroupsActivity.class);
+
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    startActivity(intent);
+
+
   }
 
   private void handleSignInResult(GoogleSignInResult result) {

@@ -1,4 +1,4 @@
-package com.mibaldi.kidbeacon.Data.Database.Models;
+package com.mibaldi.kidbeacon.Data.Models;
 
 public final class User {
 

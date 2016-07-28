@@ -6,7 +6,7 @@
     android:id="@+id/activity_social_auth"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Auth.SocialAuthActivity"
+    tools:context=".Features.Auth.SocialAuthActivity"
     >
 
   <TextView

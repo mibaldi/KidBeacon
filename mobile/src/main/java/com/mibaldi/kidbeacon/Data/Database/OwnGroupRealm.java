@@ -1,17 +1,16 @@
 package com.mibaldi.kidbeacon.Data.Database;
 
 import java.util.Date;
-import java.util.List;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class OwnGroup extends RealmObject {
+public class OwnGroupRealm extends RealmObject  {
     @PrimaryKey
     private String name;
     private Date creation_date;
-    public RealmList<OwnBeacon> beaconsList;
+    public RealmList<OwnBeaconRealm> beaconsList;
 
     public String getName() {
         return name;
@@ -29,11 +28,11 @@ public class OwnGroup extends RealmObject {
         this.creation_date = creation_date;
     }
 
-    public RealmList<OwnBeacon> getBeaconsList() {
+    public RealmList<OwnBeaconRealm> getBeaconsList() {
         return beaconsList;
     }
 
-    public void setBeaconsList(RealmList<OwnBeacon> beaconsList) {
+    public void setBeaconsList(RealmList<OwnBeaconRealm> beaconsList) {
         this.beaconsList = beaconsList;
     }
 }
