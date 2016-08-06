@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/beaconsList"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/beaconsList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/menu_red"
@@ -15,13 +26,13 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
 
-        android:paddingRight="10dp"
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
-        fab:menu_labels_ellipsize="end"
-        fab:menu_labels_singleLine="true"
+        android:paddingRight="10dp"
         fab:menu_backgroundColor="#ccffffff"
-        fab:menu_fab_label="Menu label">
+        fab:menu_fab_label="Menu label"
+        fab:menu_labels_ellipsize="end"
+        fab:menu_labels_singleLine="true">
 
 
         <com.github.clans.fab.FloatingActionButton
@@ -29,16 +40,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@android:drawable/ic_input_add"
-            fab:fab_size="mini"
-            fab:fab_label="Add Beacon" />
+            fab:fab_label="Add Beacon"
+            fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@android:drawable/ic_dialog_dialer"
-            fab:fab_size="mini"
-            fab:fab_label="Add Beacon with NFC" />
+            fab:fab_label="Add Beacon with NFC"
+            fab:fab_size="mini" />
 
     </com.github.clans.fab.FloatingActionMenu>
 </RelativeLayout>

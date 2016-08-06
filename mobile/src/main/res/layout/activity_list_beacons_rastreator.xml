@@ -7,13 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".Features.Beacons.Activities.ListBeaconsActivity">
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Lista de beacons rastreator del grupo 1"
         android:layout_alignParentTop="true"/>
-    <FrameLayout
-        android:id="@+id/fl_content"
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/title"
+        android:id="@+id/beaconsList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        ></FrameLayout>
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 </RelativeLayout>

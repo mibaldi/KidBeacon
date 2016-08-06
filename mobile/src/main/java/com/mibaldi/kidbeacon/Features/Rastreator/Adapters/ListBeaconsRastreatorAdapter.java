@@ -41,16 +41,19 @@ public class ListBeaconsRastreatorAdapter extends RecyclerView.Adapter<ListBeaco
 
     public class ListBeaconsRastreatorHolder extends RecyclerView.ViewHolder {
         public TextView name;
+        public TextView distance;
         public Context context;
 
         public ListBeaconsRastreatorHolder(View itemView) {
             super(itemView);
             context = itemView.getContext();
-            name = (TextView) itemView.findViewById(R.id.groupName);
+            name = (TextView) itemView.findViewById(R.id.beaconName);
+            distance = (TextView) itemView.findViewById(R.id.beaconDistance);
         }
 
         public void bindItem(final OwnBeacon ownBeacon) {
             name.setText(ownBeacon.name);
+            distance.setText(String.valueOf(ownBeacon.distance));
         }
 
     }

@@ -1,20 +1,37 @@
 package com.mibaldi.kidbeacon.Data.Models;
 
-public final class User {
+import com.google.firebase.database.Exclude;
 
-  private final String id;
-  private final String email;
+import java.util.ArrayList;
 
-  public User(String id, String email) {
-    this.id = id;
-    this.email = email;
-  }
+public class User {
 
-  public String getId() {
-    return id;
-  }
+    public String id;
+    public String email;
+    public String name;
 
-  public String getEmail() {
-    return email;
-  }
+    public User() {
+    }
+
+    @Exclude
+    public ArrayList<OwnGroup> groups = new ArrayList<>();
+
+
+    public User(String id, String email, String name) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

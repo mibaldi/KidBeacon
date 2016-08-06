@@ -28,6 +28,7 @@ public class ListGroupsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_groups);
+
         mGoogleApiClient.connect();
         ButterKnife.bind(this);
         ListGroupsFragment listGroupsFragment = ListGroupsFragment.newInstance();

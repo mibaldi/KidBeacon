@@ -6,8 +6,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Features.Beacons.Activities.BeaconSettingsActivity">
-    <FrameLayout
-        android:id="@+id/fl_content"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/beaconName"
+            android:hint="beacon name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/beaconUUID"
+            android:hint="beacon uuid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/beaconMajor"
+            android:hint="beacon major"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/beaconMinor"
+            android:hint="beacon minor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SAVE" />
+
+
+    </LinearLayout>
 </RelativeLayout>

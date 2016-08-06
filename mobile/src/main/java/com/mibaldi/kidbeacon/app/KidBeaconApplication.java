@@ -1,33 +1,19 @@
 package com.mibaldi.kidbeacon.app;
 
 import android.app.Application;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 
-import com.mibaldi.kidbeacon.Beacons.TimedBeaconSimulator;
 import com.mibaldi.kidbeacon.BuildConfig;
-import com.mibaldi.kidbeacon.BeaconReferences.MonitoringActivity;
-import com.mibaldi.kidbeacon.R;
 
-import org.altbeacon.beacon.BeaconManager;
-import org.altbeacon.beacon.Region;
-import org.altbeacon.beacon.powersave.BackgroundPowerSaver;
-import org.altbeacon.beacon.startup.BootstrapNotifier;
-import org.altbeacon.beacon.startup.RegionBootstrap;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import timber.log.Timber;
 
-public class KidBeaconApplication extends Application implements BootstrapNotifier {
-    private RegionBootstrap regionBootstrap;
-    private BackgroundPowerSaver backgroundPowerSaver;
-    private boolean haveDetectedBeaconsSinceBoot = false;
-    private MonitoringActivity monitoringActivity = null;
+public class KidBeaconApplication extends Application /*implements BootstrapNotifier*/ {
+    //private RegionBootstrap regionBootstrap;
+    //private BackgroundPowerSaver backgroundPowerSaver;
+    //private boolean haveDetectedBeaconsSinceBoot = false;
+    //private MonitoringActivity monitoringActivity = null;
 
     @Override
     public void onCreate() {
@@ -37,7 +23,7 @@ public class KidBeaconApplication extends Application implements BootstrapNotifi
 
         initDebugTools();
         Timber.d(realmConfiguration.getPath());
-        BeaconManager beaconManager = org.altbeacon.beacon.BeaconManager.getInstanceForApplication(this);
+       // BeaconManager beaconManager = org.altbeacon.beacon.BeaconManager.getInstanceForApplication(this);
 
         // By default the AndroidBeaconLibrary will only find AltBeacons.  If you wish to make it
         // find a different type of beacon, you must specify the byte layout for that beacon's
@@ -46,11 +32,11 @@ public class KidBeaconApplication extends Application implements BootstrapNotifi
         // layout expression for other beacon types, do a web search for "setBeaconLayout"
         // including the quotes.
         //
-        //beaconManager.getBeaconParsers().clear();
+       // beaconManager.getBeaconParsers().clear();
         //beaconManager.getBeaconParsers().add(new BeaconParser().
-        //        setBeaconLayout("m:2-3=beac,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
+          //      setBeaconLayout("m:2-3=beac,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
 
-        Timber.d("setting up background monitoring for beacons and power saving");
+      /*  Timber.d("setting up background monitoring for beacons and power saving");
         // wake up the app when a beacon is seen
         Region region = new Region("backgroundRegion",
                 null, null, null);
@@ -59,11 +45,11 @@ public class KidBeaconApplication extends Application implements BootstrapNotifi
         // simply constructing this class and holding a reference to it in your custom Application
         // class will automatically cause the BeaconLibrary to save battery whenever the application
         // is not visible.  This reduces bluetooth power usage by about 60%
-        backgroundPowerSaver = new BackgroundPowerSaver(this);
+        backgroundPowerSaver = new BackgroundPowerSaver(this);*/
 
         // If you wish to test beacon detection in the Android Emulator, you can use code like this:
-        BeaconManager.setBeaconSimulator(new TimedBeaconSimulator() );
-        ((TimedBeaconSimulator) BeaconManager.getBeaconSimulator()).createTimedSimulatedBeacons();
+       // BeaconManager.setBeaconSimulator(new TimedBeaconSimulator() );
+        //((TimedBeaconSimulator) BeaconManager.getBeaconSimulator()).createTimedSimulatedBeacons();
     }
 
     private void initDebugTools() {
@@ -73,7 +59,7 @@ public class KidBeaconApplication extends Application implements BootstrapNotifi
     }
 
 
-    @Override
+   /* @Override
     public void didEnterRegion(Region arg0) {
         // In this example, this class sends a notification to the user whenever a Beacon
         // matching a Region (defined above) are first seen.
@@ -105,6 +91,7 @@ public class KidBeaconApplication extends Application implements BootstrapNotifi
 
 
     }
+
 
     @Override
     public void didExitRegion(Region region) {
@@ -142,5 +129,5 @@ public class KidBeaconApplication extends Application implements BootstrapNotifi
 
     public void setMonitoringActivity(MonitoringActivity activity) {
         this.monitoringActivity = activity;
-    }
+    }*/
 }

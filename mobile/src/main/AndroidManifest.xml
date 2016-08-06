@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mibaldi.kidbeacon">
-
+    <uses-feature android:name="android.hardware.nfc" android:required="true"/>
+    <uses-permission android:name="android.permission.NFC"/>
     <application
         android:name=".app.KidBeaconApplication"
         android:allowBackup="true"
@@ -16,21 +17,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".BeaconReferences.MonitoringActivity"
-            android:label="@string/title_activity_monitoring"
-            android:launchMode="singleInstance"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".BeaconReferences.RangingActivity" />
-        <activity
-            android:name=".Features.Groups.Activities.MainActivity"
-            android:launchMode="singleInstance" />
         <activity android:name=".Features.Groups.Activities.ListGroupsActivity" />
         <activity android:name=".Features.Groups.Activities.GroupSingleActivity" />
         <activity android:name=".Features.Groups.Activities.GroupSettingsActivity" />
         <activity android:name=".Features.Beacons.Activities.ListBeaconsActivity" />
         <activity android:name=".Features.Rastreator.Activities.ListBeaconsRastreatorActivity" />
-        <activity android:name=".Features.Beacons.Activities.BeaconSettingsActivity"></activity>
+        <activity android:name=".Features.Beacons.Activities.BeaconSettingsActivity" />
+        <activity android:name=".Features.Beacons.NFC.NfcActivity"
+            android:launchMode="singleTask">
+
+
+            <meta-data android:name="android.nfc.action.TECH_DISCOVERED"
+                android:resource="@xml/nfc_tech_filter" />
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED"/>
+                <category android:name="android.intent.category.DEFAULT" />
+
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
